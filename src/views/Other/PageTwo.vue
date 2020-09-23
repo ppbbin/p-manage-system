@@ -1,13 +1,13 @@
 <template>
-$END$
+  <div>
+    page2
+  </div>
 </template>
 
 <script>
 export default {
-name: "PageTwo"
+  name: 'PageTwo'
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,13 +1,34 @@
 <template>
-$END$
+  <el-container style="height: 100%;">
+    <el-aside width="auto"><common-aside></common-aside></el-aside>
+    <el-container>
+      <el-header><common-header></common-header></el-header>
+      <CommonTab></CommonTab>
+      <el-main>
+        <router-view />
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
 
 <script>
+import CommonHeader from '../components/CommonHeader'
+import CommonAside from '../components/CommonAside'
+import CommonTab from '../components/CommonTab'
 export default {
-name: "main"
+  components: {
+    CommonHeader,
+    CommonAside,
+    CommonTab
+  }
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.el-header {
+  background-color: #333;
+}
+.el-main {
+  padding-top: 0;
+}
 </style>

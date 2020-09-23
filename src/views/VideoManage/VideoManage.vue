@@ -1,13 +1,13 @@
 <template>
-$END$
+  <div>
+    video
+  </div>
 </template>
 
 <script>
 export default {
-name: "VideoManage"
+  name: 'VideoManage'
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
