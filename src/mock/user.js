@@ -18,6 +18,8 @@ function param2Obj(url) {
 
 let List = []
 const count = 200
+const ERROR_CODE = -999
+const SUCCESS_CODE = 20000
 
 for (let i = 0; i < count; i++) {
   List.push(
@@ -40,15 +42,14 @@ export default {
    * @return {{code: number, count: number, data: *[]}}
    */
   getUserList: config => {
-    const { name, page = 1, limit = 20 } = param2Obj(config.url)
-    console.log('name:' + name, 'page:' + page, '分页大小limit:' + limit)
+    let { name, page = 1, limit = 20 } = param2Obj(config.url)
     const mockList = List.filter(user => {
       if (name && user.name.indexOf(name) === -1 && user.addr.indexOf(name) === -1) return false
       return true
     })
     const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
     return {
-      code: 20000,
+      code: SUCCESS_CODE,
       count: mockList.length,
       list: pageList
     }
@@ -60,7 +61,6 @@ export default {
    */
   createUser: config => {
     const { name, addr, age, birth, sex } = JSON.parse(config.body)
-    console.log(JSON.parse(config.body))
     List.unshift({
       id: Mock.Random.guid(),
       name: name,
@@ -70,7 +70,7 @@ export default {
       sex: sex
     })
     return {
-      code: 20000,
+      code: SUCCESS_CODE,
       data: {
         message: '添加成功'
       }
@@ -85,13 +85,13 @@ export default {
     const { id } = param2Obj(config.url)
     if (!id) {
       return {
-        code: -999,
+        code: ERROR_CODE,
         message: '参数不正确'
       }
     } else {
       List = List.filter(u => u.id !== id)
       return {
-        code: 20000,
+        code: SUCCESS_CODE,
         message: '删除成功'
       }
     }
@@ -106,7 +106,7 @@ export default {
     ids = ids.split(',')
     List = List.filter(u => !ids.includes(u.id))
     return {
-      code: 20000,
+      code: SUCCESS_CODE,
       data: {
         message: '批量删除成功'
       }
@@ -131,7 +131,7 @@ export default {
       }
     })
     return {
-      code: 20000,
+      code: SUCCESS_CODE,
       data: {
         message: '编辑成功'
       }

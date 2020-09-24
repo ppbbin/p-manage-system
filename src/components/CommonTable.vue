@@ -1,6 +1,6 @@
 <template>
   <div class="common-table">
-    <el-table :data="tableData" height="90%" stripe show-overflow-tooltip>
+    <el-table :data="tableData" height="90%" stripe show-overflow-tooltip v-loading="config.loading">
       <el-table-column label="序号" width="85">
         <template slot-scope="scope">
           <span style="margin-left: 10px">{{ (config.page - 1) * 20 + scope.$index + 1 }}</span>
@@ -18,7 +18,7 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination class="paper" layout="prev, pager, next" :total="config.total" :current-page.sync="config.page"></el-pagination>
+    <el-pagination class="paper" layout="prev, pager, next" :total="config.total" :current-page.sync="config.page" @current-change="changePage"></el-pagination>
   </div>
 </template>
 
@@ -30,8 +30,15 @@ export default {
     config: Object
   },
   methods: {
-    handleEdit() {},
-    handleDelete() {}
+    handleEdit(row) {
+      this.$emit('edit', row)
+    },
+    handleDelete(row) {
+      this.$emit('del', row)
+    },
+    changePage(page) {
+      this.$emit('changePage', page)
+    }
   }
 }
 </script>
