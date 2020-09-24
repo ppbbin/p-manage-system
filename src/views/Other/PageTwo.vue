@@ -1,13 +1,9 @@
 <template>
-  <div>
-    page2
-  </div>
+  <div></div>
 </template>
 
 <script>
-export default {
-  name: 'PageTwo'
-}
+export default {}
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped></style>

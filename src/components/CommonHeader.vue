@@ -16,7 +16,7 @@
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>个人中心</el-dropdown-item>
-          <el-dropdown-item>退出</el-dropdown-item>
+          <el-dropdown-item @click.native="logOut">退出</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -39,6 +39,14 @@ export default {
   methods: {
     collapseMenu() {
       this.$store.commit('collapseMenu')
+    },
+    logOut() {
+      // 置空token
+      this.$store.commit('clearToken')
+      // 清除菜单
+      this.$store.commit('clearMenu')
+      // 刷新浏览器
+      location.reload()
     }
   }
 }

@@ -1,20 +1,21 @@
 <template>
   <el-menu default-active="2" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" :collapse="isCollapse">
-    <h3 v-show="!isCollapse">小p课堂台管理系统</h3>
+    <h3 v-show="!isCollapse">小p台管理系统</h3>
     <h3 v-show="isCollapse">小p</h3>
     <el-menu-item :index="item.path" v-for="item in noChildren" :key="item.path" @click="clickMenu(item)">
-      <i :class="'el-icon-' + item.icon"></i>
+      <i :class="`el-icon-${item.icon}`"></i>
       <span slot="title">{{ item.label }}</span>
     </el-menu-item>
-    <el-submenu :index="item.path" v-for="(item, index) in hasChildren" :key="index">
+    <el-submenu index="index" v-for="(item, index) in hasChildren" :key="index">
       <template slot="title">
-        <i :class="'el-icon-' + item.icon"></i>
-        <span>{{ item.label }}</span>
+        <i :class="`el-icon-${item.icon}`"></i>
+        <span slot="title">{{ item.label }}</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item :index="subItem.path" v-for="(subItem, subIndex) in item.children" :key="subIndex" @click="clickMenu(subItem)">{{
-          subItem.label
-        }}</el-menu-item>
+        <el-menu-item :index="subItem.path" v-for="(subItem, subIndex) in item.children" :key="subIndex" @click="clickMenu(subItem)">
+          <i :class="`el-icon-${subItem.icon}`"></i>
+          <span slot="title">{{ subItem.label }}</span>
+        </el-menu-item>
       </el-menu-item-group>
     </el-submenu>
   </el-menu>
@@ -24,37 +25,44 @@
 export default {
   computed: {
     noChildren() {
-      return this.asideMenu.filter(item => !item.children)
+      return this.menu.filter(item => !item.children)
     },
     hasChildren() {
-      return this.asideMenu.filter(item => item.children)
+      return this.menu.filter(item => item.children)
     },
     isCollapse() {
       return this.$store.state.tab.isCollapse
+    },
+    menu() {
+      return this.$store.state.tab.menu
     }
   },
   data() {
     return {
       asideMenu: [
         {
+          id: 1,
           path: '/',
           name: 'home',
           label: '首页',
           icon: 's-home'
         },
         {
+          id: 2,
           path: '/video',
           name: 'video',
           label: '视频管理',
           icon: 'video-play'
         },
         {
+          id: 3,
           path: '/user',
           name: 'user',
           label: '用户管理',
           icon: 'user'
         },
         {
+          id: 4,
           path: '/',
           label: '其他',
           icon: 'more',

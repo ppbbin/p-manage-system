@@ -19,8 +19,24 @@ Vue.prototype.$http = http
 
 Vue.config.productionTip = false
 
+//添加路由守卫拦截，判断用户登录状态以跳转到对应页面
+router.beforeEach((to, from, next) => {
+  // 防止刷新后vuex里丢失token
+  store.commit('getToken')
+  let token = store.state.user.token
+  // 过滤登录页，防止死循环
+  if (!token && to.name !== 'login') {
+    next({ name: 'login' })
+  } else {
+    next()
+  }
+})
+
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: h => h(App),
+  created() {
+    store.commit('addMenu', router)
+  }
 }).$mount('#app')

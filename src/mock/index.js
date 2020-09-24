@@ -1,6 +1,7 @@
 import Mock from 'mockjs'
 import homeApi from './home'
 import userApi from './user'
+import permissionApi from './permission'
 
 //设置200-2000毫秒延时请求到数据
 Mock.setup({
@@ -19,4 +20,4 @@ Mock.mock(/\/user\/add/, 'post', userApi.createUser)
 Mock.mock(/\/user\/edit/, 'post', userApi.updateUser)
 
 //权限相关
-// Mock.mock(/\/permission\/getMenu/, 'post', permissionApi.getMenu)
+Mock.mock(/\/permission\/getMenu/, 'post', permissionApi.getMenu)

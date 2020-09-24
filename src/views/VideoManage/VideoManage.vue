@@ -1,13 +1,9 @@
 <template>
-  <div>
-    video
-  </div>
+  <div></div>
 </template>
 
 <script>
-export default {
-  name: 'VideoManage'
-}
+export default {}
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped></style>
