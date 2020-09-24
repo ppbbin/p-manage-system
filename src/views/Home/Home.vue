@@ -10,8 +10,8 @@
           </div>
         </div>
         <div class="login-info">
-          <p>上次登录时间:<span>2019-10-20</span></p>
-          <p>上次登录地点:<span>北京</span></p>
+          <p>上次登录时间:<span>2020-09-20</span></p>
+          <p>上次登录地点:<span>深圳</span></p>
         </div>
       </el-card>
       <el-card shadow="hover" style="height: 522px;margin-top: 20px">
