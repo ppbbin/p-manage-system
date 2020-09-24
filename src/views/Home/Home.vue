@@ -120,7 +120,6 @@ export default {
       this.$http.get('/home/getData').then(res => {
         res = res.data
         this.tableData = res.data.tableData
-
         //订单折线图
         const order = res.data.orderData
         this.echartData.order.xData = order.date
@@ -133,7 +132,6 @@ export default {
             type: 'line'
           })
         })
-
         //柱状图
         const user = res.data.userData
         this.echartData.user.xData = user.map(item => item.date)
@@ -150,7 +148,6 @@ export default {
             barGap: 0
           }
         ]
-
         //饼状图
         const video = res.data.videoData
         this.echartData.video.series = [

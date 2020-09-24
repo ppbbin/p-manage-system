@@ -1,11 +1,12 @@
 <template>
-  <div style="padding: 20px">
+  <div class="main" style="padding: 20px">
     <el-form :model="form" label-width="120">
-      <el-form-item label="用户名">
-        <el-input v-model="form.username"></el-input>
+      <h3>后台管理系统</h3>
+      <el-form-item>
+        <el-input v-model="form.username" placeholder="用户名" autofocus></el-input>
       </el-form-item>
-      <el-form-item label="密码">
-        <el-input v-model="form.password" type="password"></el-input>
+      <el-form-item>
+        <el-input v-model="form.password" type="password" placeholder="密码"></el-input>
       </el-form-item>
       <el-form-item align="center">
         <el-button type="primary" @click="login">登录</el-button>
@@ -48,11 +49,61 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.main {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: url('../../assets/images/login_bg.png') no-repeat;
+  background-size: cover;
+}
+
 .el-form {
-  width: 50%;
-  margin: auto;
-  padding: 45px;
-  height: 450px;
-  background-color: #fff;
+  background-color: #000;
+  z-index: 1;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  padding: 0 45px 30px 45px;
+  text-align: center;
+  border-radius: 10px;
+  opacity: 0.9;
+  h3 {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 23px;
+  }
+  /deep/ .el-input__inner {
+    height: 100%;
+    outline: 0;
+    background: none;
+    font-size: 15px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 2.5px solid #2e86de;
+    border-radius: 10px;
+    transition: 0.5s;
+    transition-property: width;
+  }
+  button {
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #fff;
+    background-color: #2e86de;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  button:hover {
+    transform: scale(1.1);
+  }
 }
 </style>
